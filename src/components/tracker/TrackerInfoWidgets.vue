@@ -1,92 +1,65 @@
 <template>
   <div>
     
-
-    <div class="row tracker-info-widgets">
+    <div class="row " style="margin-bottom:25px">
       
-      <div class="col-md-6 col-xl-3">
-        <vuestic-widget  class="info-widget  " style="background:transparent;-webkit-box-shadow:none;box-shadow:none">
-          <div  v-bind:class="[{ 'has-chart': feed.live }, 'info-widget-inner']">
-            <div class="stats" style="padding:0 0 0 10px;;margin-bottom:0px">
-              <div class="stats-title title-above">{{feed.displayInning}}</div>
-              <div class="stats-number" >
-                {{feed.iorf}}
-              </div>
-              
-            </div>
-            <div v-bind:class="[{ 'd-none': feed.notLive }, 'stats']" style="padding:0 20px 0 0;margin-bottom:0px" >
-              <div class="stats-title">{{feed.outText}}</div>
-              <div class="stats-number" >
-                {{feed.outs}}
-              </div>
-              
-            </div>
-          </div>
-        </vuestic-widget>
-      </div>
-     
+    </div>
 
+    <div class="row tracker-info-widgets" style="margin-bottom:25px">
+      
+      <tracker-score-widget v-bind:feed="feed" ></tracker-score-widget>
 
-      <div class="col-md-6 col-xl-3">
-        <vuestic-widget style="-webkit-box-shadow:none;box-shadow:none" v-bind:class="[ `mlb-${feed.away.toLowerCase()}`, 'info-widget']">
-          <div v-bind:class="['info-widget-inner', 'has-chart']">
-             
-            <div class="stats">
-              <div class="stats-number" style="font-size:40px">
-                {{ feed.away }}
+      <div class="col-md-12 col-lg-6">
+        <div style="height:70px;width:100%;padding:10px 0px">
+          <div class=" inningBar">
+            <div class="inning" style="float:left;width:50%;height:70px;text-align:left;line-height:1">{{ feed.displayInning }}</div>
+            <div style="float:left;width:50%;height:70px;text-align:center;line-height:1">
+              <div class="" style="font-size:2.2rem;margin-top:0px">
+                {{feed.outsleft}}
               </div>
-              <div class="stats-title" >{{feed.awayTeamData.leagueRecord.wins}} - {{feed.awayTeamData.leagueRecord.losses}}</div>
-            </div>
-           <div class="chart-container"   style="font-size:50px;font-weight:bold;margin-bottom:0px">
-                {{feed.awayScore}}
-            </div>
-          </div>
-        </vuestic-widget>
-      </div>
-
-      <div class="col-md-6 col-xl-3">
-        <vuestic-widget style="-webkit-box-shadow:none;box-shadow:none" v-bind:class="[ `mlb-${feed.home.toLowerCase()}`, 'info-widget']">
-          <div class="info-widget-inner has-chart">
-            <div class="chart-container" style="padding-top:0px;font-size:50px;font-weight:bold">
-                {{feed.homeScore}}
-            </div>
-            <div clas="stats">
-              <div class="stats-number" style="font-size:40px">
-                {{ feed.home }}
-              </div>
-              <div class="stats-title">{{feed.homeTeamData.leagueRecord.wins}} - {{feed.homeTeamData.leagueRecord.losses}}</div>
+              <div class="stats-title " style="margin-bottom:20px">Outs Left</div>
             </div>
             
           </div>
-        </vuestic-widget>
-      </div>
-
-       <div class="col-md-6 col-xl-3">
-       <vuestic-widget class="info-widget  " style="background:transparent;-webkit-box-shadow:none;box-shadow:none">
-          <div class="info-widget-inner has-chart" style="margin-bottom:12px">
-              
-            <div class="stats " style="padding:0 0px 0 0px" >
-              <div class="stats-number">
-                {{feed.totalOuts}} <span style="font-size:16px"> &nbsp; of &nbsp; </span> {{feed.projectedOuts}}
-              </div>
-              <div class="stats-title" style="margin-bottom:0px">{{'tracker.totalOuts' | translate}}</div>
+        </div>
+        <div style="height:70px;width:100%;padding:0px">
+          <div class=" inningBar" style="padding-top:6px;float:left;width:50%;height:70px;text-align:center;line-height:1">
+            
+            <div class="balls">
+                <div v-bind:class="['dot', feed.balls > 0 ? 'ball' : '']"></div>
+                <div v-bind:class="['dot', feed.balls > 1 ? 'ball' : '']"></div>
+                <div v-bind:class="['dot', feed.balls > 2 ? 'ball' : '']"></div>
+                <div v-bind:class="['dot', feed.balls > 3 ? 'ball' : '']"></div>
             </div>
-           <div class="stats " style="padding:0 0px 0 0;margin-bottom:0px" >
-              <div class="stats-number">
-                {{feed.outsleft}}
+            <div class="strikes">
+                <div v-bind:class="['dot', feed.strikes > 0 ? 'strike' : '']"></div>
+                <div v-bind:class="['dot', feed.strikes > 1 ? 'strike' : '']"></div>
+                <div v-bind:class="['dot', feed.strikes > 2 ? 'strike' : '']"></div>
+            </div>
+            
+            
+            <div class="outs">
+                <div v-bind:class="['dot', feed.outs > 0 ? 'out' : '']"></div>
+                <div v-bind:class="['dot', feed.outs > 1 ? 'out' : '']"></div>
+                <div v-bind:class="['dot', feed.outs > 2 ? 'out' : '']"></div>
+            </div>
+            
+            
+          </div>
+          <div style="float:left;width:50%;height:70px;text-align:center;line-height:1">
+            <div class="">
+              <div class="" style="font-size:2.2rem;margin-top:0px">
+                {{feed.totalOuts}} <span style="font-size:18px"> &nbsp; of &nbsp; </span> {{feed.projectedOuts}}
               </div>
-              <div class="stats-title" style="margin-bottom:0px">Left</div>
+              <div class="stats-title " style="margin-bottom:20px">Outs Made</div>
             </div>
           </div>
-        </vuestic-widget> 
-      </div>
-
-      
-    </div> 
-
-
+        </div>
+      </div>     
+    </div>  
+    
     <div class="row tracker-info-widgets">
-      <div class="col-md-6 col-xl-3">
+      <div class="col-md-6 col-lg-3">
         <vuestic-widget class="info-widget bg-primary white" style="border-top:0">
           <div class="info-widget-inner">
             <div class="stats">
@@ -101,7 +74,7 @@
       </div>
       
       
-      <div class="col-md-6 col-xl-3">
+      <div class="col-md-6 col-lg-3">
         <vuestic-widget class="info-widget bg-primary white" style="border-top:0">
           <div class="info-widget-inner">
             <div class="info-widget-inner ">
@@ -116,7 +89,7 @@
           </div>
         </vuestic-widget>
       </div>
-      <div class="col-md-6 col-xl-3">
+      <div class="col-md-6 col-lg-3">
         <vuestic-widget class="info-widget bg-primary white" style="border-top:0">
           <div class="info-widget-inner">
             <div class="stats">
@@ -128,7 +101,7 @@
           </div>
         </vuestic-widget>
       </div>
-      <div class="col-md-6 col-xl-3">
+      <div class="col-md-6 col-lg-3">
         <vuestic-widget class="info-widget bg-primary white" style="border-top:0">
           <div class="info-widget-inner">
             <div class="stats" >
@@ -150,9 +123,13 @@
 
 <script>
   import moment from 'moment'
+  import TrackerScoreWidget from './TrackerInfoScoreWidget'
 
   export default {
     name: 'tracker-info-widgets',
+    components: {
+      TrackerScoreWidget
+    },
     data: () => ({
       htmlLegend: null,
       interval: null,
@@ -175,6 +152,10 @@
       },
       setInterval () {
         this.interval = setInterval(() => {
+          if (this.feed.gameMinutes < 1) {
+            this.runtime = 'waiting for'
+            return
+          }
           if (this.feed.isFinal) {
             this.runtime = this.getRuntime(this.feed.startTime, moment(this.feed.innings[this.feed.innings.length - 1].endTime))
             return
@@ -213,16 +194,17 @@
         feed.projectedLength = feed.projectedMinutes ? `${hh} hr ${mm} mins` : '3 hrs'
         feed.projectedLengthText = 'Projected Length'
         feed.displayInning = feed.half === 1 ? 'Top' : 'Bottom'
-        feed.iorf = feed.inning
+        feed.displayInning += ' ' + feed.inning
         feed.outText = 'Outs'
         if (feed.status.statusCode === 'S' || feed.status.statusCode === 'P' || feed.gameMinutes < 1) {
           // PREGAME
           feed.projectedEnd = moment(feed.startTime).fromNow(true)
           feed.projectedEndText = 'till first pitch'
+          feed.projectedLength = 'waiting for'
           feed.pregame = true
           feed.notLive = true
           feed.live = false
-          this.runtime = '00:00:00'
+          this.runtime = 'waiting for'
         }
         if (feed.status.abstractGameCode === 'F') {
           // FINAL

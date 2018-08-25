@@ -21,7 +21,7 @@ const state = {
     palette: {
       primary: '#1B2544',
       danger: '#e34a4a',
-      info: '#b2c6cf',
+      info: '#cae1ff',
       success: '#db76df',
       warning: '#e96c19',
       white: '#fff',
