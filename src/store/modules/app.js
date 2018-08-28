@@ -3,8 +3,8 @@ import moment from 'moment'
 
 let colors = []
 let i
-let color = () => ('#' + ('000000' + Math.random().toString(16).slice(2, 8).toUpperCase()).slice(-6))
-for (i = 0; i < 50; i++) {
+let color = () => ('#' + ('283842' + Math.random().toString(16).slice(2, 8).toUpperCase()).slice(-6))
+for (i = 0; i < 75; i++) {
   colors.push(color())
 }
 

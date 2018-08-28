@@ -12,11 +12,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(sched, id) in schedule" :key="id" >
+                <tr v-for="(sched, id) in schedule" :key="id" :style="{color: sched.status.abstractGameCode === 'L' ? 'blue' : ''}">
                     
                     <router-link tag="td" :to="{ name: 'setGamePk', params: { gamepk: sched.gamepk }}" style="cursor:pointer">{{sched.start}}</router-link>
-                    <router-link tag="td" :to="{ name: 'setGamePk', params: { gamepk: sched.gamepk }}" style="cursor:pointer">{{sched.awayTeam}}</router-link>
-                    <router-link tag="td" :to="{ name: 'setGamePk', params: { gamepk: sched.gamepk }}" style="cursor:pointer">{{sched.homeTeam}}</router-link>
+                    <router-link tag="td" :to="{ name: 'setGamePk', params: { gamepk: sched.gamepk }}" :style="{'cursor':'pointer', color: sched.status.abstractGameCode === 'F' && sched.awayScore > sched.homeScore ? 'green' : sched.status.abstractGameCode === 'F' && sched.awayScore < sched.homeScore ? 'gray' : ''}">{{sched.awayTeam}}</router-link>
+                    <router-link tag="td" :to="{ name: 'setGamePk', params: { gamepk: sched.gamepk }}" :style="{'cursor':'pointer', color: sched.status.abstractGameCode === 'F' && sched.awayScore < sched.homeScore ? 'green' : sched.status.abstractGameCode === 'F' && sched.awayScore > sched.homeScore ? 'gray' : ''}">{{sched.homeTeam}}</router-link>
                     <router-link tag="td" :to="{ name: 'setGamePk', params: { gamepk: sched.gamepk }}" style="cursor:pointer">{{sched.awayScore + ' - ' + sched.homeScore}}</router-link>
                     <router-link tag="td" :to="{ name: 'setGamePk', params: { gamepk: sched.gamepk }}" style="cursor:pointer">{{sched.stat}}</router-link>
                 </tr>

@@ -1,4 +1,58 @@
 
+.bases {
+    margin-left: 5px;
+    width: 70px;
+    height: 60px;
+    position: relative;
+    overflow: hidden;
+    .second {
+        position: absolute;
+        top: 5px;
+        left: 25px;
+        width: 20px;
+        height: 20px;
+        clear: both;
+        transform: rotate(45deg);
+        background: #eee;
+        border: 1px solid #999;
+    }
+    .third {
+        width: 20px;
+        height: 20px;
+        transform: rotate(45deg);
+        background: #eee;
+        border: 1px solid #999;
+        position: absolute;
+        top: 21px;
+        left: 9px;
+
+    }
+    .first {
+        width: 20px;
+        height: 20px;
+        transform: rotate(45deg);
+        background: #eee;
+        border: 1px solid #999;
+        position: absolute;
+        top: 21px;
+        left: 41px;
+    }
+    .home {
+        width: 20px;
+        height: 20px;
+        transform: rotate(45deg);
+        background: #fff;
+        border: 1px solid #333;
+        position: absolute;
+        top: 37px;
+        left: 25px;
+    }
+    .highlighted {
+        background: $brand-warning;
+    }
+}
+
+
 .inningbug {
     display: flex;
     flex-direction: row;
@@ -45,40 +99,32 @@
             height: 70px;
             z-index: 99;
         }
-        .highlighted {
-            //background: #e9d4a3;
-        }
-        .dot {
-            height: 11px;
-            width: 11px;
-            background-color: transparent;
-            border: 1px solid #777;
-            border-radius: 50%;
-            display: inline-block;
-        }
-        .ball {
-            background: #005A9C;
-            //border: none;
-        }
-        .strike {
-            background: rgb(156, 0, 21);
-            //border: none;
-        }
-        .out {
-            background: rgb(198, 243, 0);
-            //border: none;
-        }
     }
+}
 
+.pitcherbatter {
+    font-size: 12px;
+    height: 30px;
+    
+    .batter {
+        float: left;
+        text-align: left;
+        margin-left: 35px;
+    }
+    .pitcher {
+        float: right;
+        text-align: left;
+        margin-right: 0px;
+    }
 }
 
 .inningBar {
     width: 100%;
-    height: 70px;
+    height: 40px;
     padding-top:0px;
     .dot {
-        height: 13px;
-        width: 13px;
+        height: 14px;
+        width: 14px;
         background-color: transparent;
         border: 1px solid #777;
         border-radius: 50%;
@@ -89,24 +135,24 @@
         //border: none;
     }
     .strike {
-        background: rgb(156, 0, 21);
+        background: #9c0015;
         //border: none;
     }
     .out {
-        background: rgb(198, 243, 0);
+        background: #d4ff15;
         //border: none;
     }
     .balls {
         float: left;
-        margin: 5px 7px 0 7px;
+        margin: 0px 10px 0 35px;
     }
     .strikes {
         float: left;
-        margin: 5px 7px 0 7px;
+        margin: 0 20px 0 10px;
     }
     .outs {
         float: left;
-        margin: 5px 7px 0 7px;
+        margin: 0;
     }
     .inning {
         float: left;
@@ -263,126 +309,126 @@
 }
 .mlb-ari {
 	color: #fff;
-	background: #A71930;
+	background: #A71930 !important;
 }
 .mlb-atl {
 	color: #fff;
-	background:  #13274F;
+	background:  #13274F !important;
 }
 .mlb-bal {
 	
 	color: #000;
-	background: #DF4601;
+	background: #DF4601 !important;
 }
 .mlb-bos {
 	
 	color: #fff;
-	background: #BD3039;
+	background: #BD3039 !important;
 	
 }
 .mlb-chc {
 	color: #fff;
-	background: #0E3386;
+	background: #0E3386 !important;
 }
 .mlb-cws {
 	color: #fff;
-	background: #000000;
+	background: #000000 !important;
 }
 .mlb-cin {
     color: #fff;
-    background: #C6011F;
+    background: #C6011F !important;
 }
 .mlb-cle {
     color: #fff;
-    background: #E31937;
+    background: #E31937 !important;
 }
 .mlb-col {
 	color: #fff;
-	background: #333366;
+	background: #333366 !important;
 }
 .mlb-det {
 	color: #fff;
-	background: #0C2C56;
+	background: #0C2C56 !important;
 }
 .mlb-hou {
 	color: #002D62;
-	background: #EB6E1F;
+	background: #EB6E1F !important;
 }
 
 .mlb-kc {
 	color: #fff;
-	background: #004687;
+	background: #004687 !important;
 }
 .mlb-laa {
-	background: #BA0021;
+	background: #BA0021 !important;
 	color: #fff;
 }
 .mlb-lad {
-	background: #005A9C;
+	background: #005A9C !important;
 	color: #fff;
 }
 .mlb-mia {
 	color: #fff;
-	background:  #0077C8;
+	background:  #0077C8 !important;
 }
 .mlb-mil {
 	color: #B6922E;
-	background:  #0A2351;
+	background:  #0A2351 !important;
 }
 .mlb-min {
 	color: #fff;
-	background:  #D31145;
+	background:  #D31145 !important;
 }
 .mlb-nym {
 	color: #002D72;
-	background: #FF5910;
+	background: #FF5910 !important;
 }
 .mlb-nyy {
 	color: #fff;
-	background:  #00040c;
+	background:  #00040c !important;
 }
 .mlb-oak {
 	color: #EFB21E;
-	background:  #003831;
+	background:  #003831 !important;
 }
 .mlb-phi {
 	color: #fff;
-	background:  #E81828;
+	background:  #E81828 !important;
 }
 .mlb-pit {
 	color: #000;
-	background:  #FDB827;
+	background:  #FDB827 !important;
 }
 .mlb-sd {
 	color: #FEC325;
-	background:  #7F411C;
+	background:  #7F411C !important;
 }
 
 .mlb-sf {
 	color: #000;
-	background: #FD5A1E;
+	background: #FD5A1E !important;
 }
 .mlb-sea {
 	color: #C4CED4;
-	background:  #005C5C;
+	background:  #005C5C !important;
 }
 .mlb-stl {
 	color: #fff;
-	background: #C41E3A;
+	background: #C41E3A !important;
 }
 .mlb-tb {
 	color: #092C5C;
-	background: #8FBCE6;
+	background: #8FBCE6 !important;
 }
 .mlb-tex {
 	color: #fff;
-	background:  #C0111F;
+	background:  #C0111F !important;
 }
 .mlb-tor {
 	color: #fff;
-	background:  #134A8E;
+	background:  #134A8E !important;
 }
 .mlb-wsh {
 	color: #fff;
-	background: #AB0003;
+	background: #AB0003 !important;
 }

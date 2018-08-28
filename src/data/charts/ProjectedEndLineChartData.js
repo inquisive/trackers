@@ -45,13 +45,13 @@ export default (feed) => {
 
   for (let i = 0; i < events.length; i++) {
     labels.push((i + 1))
-    datasets[1].data.push(Math.round(events[i].projectedMinutes))
+    datasets[1].data.push(Math.floor(events[i].projectedMinutes))
     datasets[2].data.push(180)
     if (feed.isFinal) {
       datasets[3].data.push(feed.gameMinutes)
     }
     const a = moment(events[i].timeOfEvent).unix() - moment(events[i].startTime).unix()
-    datasets[0].data.push(Math.round(a / 60))
+    datasets[0].data.push(Math.floor(a / 60))
   }
   // console.log(datasets)
   return {

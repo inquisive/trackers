@@ -5,22 +5,22 @@
 
     <vuestic-widget class="no-padding no-v-padding">
       <vuestic-tabs
-        :names="['Time Charts', 'Inning Charts', 'Out Charts', 'Game Info', 'Raw Data']"
+        :names="['time charts', 'inning charts', 'out charts', 'umpires', 'raw data']"
         ref="tabs">
         
-        <div slot="Time Charts">
+        <div slot="time charts">
           <time-tab></time-tab>
         </div>
-        <div slot="Inning Charts">
+        <div slot="inning charts">
           <innings-tab></innings-tab>
         </div>
-        <div slot="Out Charts">
+        <div slot="out charts">
           <data-visualisation-tab></data-visualisation-tab>
         </div>
-        <div slot="Game Info">
-          <features-tab></features-tab>
+        <div slot="umpires">
+          <features-tab v-bind:officials="track.feed.officials" ></features-tab>
         </div>
-        <div slot="Raw Data">
+        <div slot="raw data">
           <pre id="json">{{rawdata}}</pre>
         </div>
       </vuestic-tabs>

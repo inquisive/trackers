@@ -1,39 +1,26 @@
 <template>
   <div class="vuestic-page-not-found-simple">
-    <div class="vuestic-page-not-found-simple__content">
+    <vuestic-page-not-found-sad-wallpaper/>
       <div class="vuestic-page-not-found-simple__wallpaper">
-        <router-link class="i-vuestic vuestic-page-not-found-simple__i-vuestic" :to="{path: '/'}"/>
+        <h3 class="vuestic-page-not-found-simple__text">You are lost.  </h3>
       </div>
-      <div class="vuestic-page-not-found-simple__wallpaper">
-        <h3 class="vuestic-page-not-found-simple__text">The page's gone fishing.</h3>
-      </div>
-      <div class="vuestic-page-not-found-simple__wallpaper col-md-12">
-        <div class="row vuestic-page-not-found-simple__message">
-          <h4 class="vuestic-page-not-found-simple__text-small">If you feel that it's not right, please send us a message at &nbsp</h4>
-          <a href="mailto:hello@epicmax.co">hello@epicmax.co</a>
-        </div>
-      </div>
-      <div class="vuestic-page-not-found-simple__wallpaper-button col-md-12">
-        <router-link :to="{ path: './dashboard' }">
+      
+      <div class="vuestic-page-not-found-simple__wallpaper-button col-md-12" style="padding-bottom:20px">
+        <router-link :to="{ name: 'dashboard' }">
           <button class="btn btn-primary back-button">
-            {{'Back to dashboard'}}
+            Do something else.
           </button>
         </router-link>
-      </div>
-    </div>
-    <vuestic-page-not-found-sad-wallpaper/>
-    <made-by-component/>
+      </div>    
   </div>
 </template>
 
 <script>
-import MadeByComponent from './MadeByComponent'
 import VuesticPageNotFoundSadWallpaper from './VuesticPageNotFoundSadWallpaper.vue'
 
 export default {
   name: 'vuestic-page-not-found-simple',
   components: {
-    MadeByComponent,
     VuesticPageNotFoundSadWallpaper
   }
 }

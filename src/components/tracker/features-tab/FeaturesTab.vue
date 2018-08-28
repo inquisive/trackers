@@ -1,11 +1,22 @@
 <template>
-  <div class="overview-tab tracker-tab">
+  <div class="overview-tab tracker-tab" style="font-size: 20px;padding-left:35px ">
+    <div v-for="(official, id) in officials" :key="id">
+      <div style="width:150px;float:left;font-weight:bold;">{{ official.officialType }}</div>
+      <div style="float:left;">{{ official.official.fullName }}</div>
+      <div style="clear:both;width:1px;height:10px;"></div>
+    </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'features-tab'
+    name: 'features-tab',
+    props: {
+      officials: {
+        type: Array,
+        required: true,
+      }
+    }
   }
 </script>
 
