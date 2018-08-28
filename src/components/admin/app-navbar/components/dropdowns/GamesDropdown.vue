@@ -32,8 +32,8 @@
     },
     computed: {
       schedule () {
-        let schedA = this.$store.getters.track
-        let sched = schedA.schedule.map(e => {
+        let schedA = this.$store.getters.schedule || []
+        let sched = schedA.map(e => {
           e.time = moment(e.startTime).format('LT')
           return e
         })

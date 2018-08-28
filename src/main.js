@@ -12,10 +12,14 @@ import router from './router'
 import VuesticPlugin from 'vuestic-theme/vuestic-plugin'
 import './i18n'
 import YmapPlugin from 'vue-yandex-maps'
+import socketio from 'socket.io-client'
+import VueSocketIO from 'vue-socket.io'
 
+export const SocketInstance = socketio('https://trackers.inquisive.com:4442')
 
 Vue.use(VuesticPlugin)
 Vue.use(YmapPlugin)
+Vue.use(VueSocketIO, SocketInstance, store)
 
 // NOTE: workaround for VeeValidate + vuetable-2
 Vue.use(VeeValidate, {fieldsBagName: 'formFields'})

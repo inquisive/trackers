@@ -5,7 +5,7 @@ import AuthLayout from '../components/auth/AuthLayout'
 import lazyLoading from './lazyLoading'
 import moment from 'moment'
 import store from '../store'
-import DataService from '@/services/DataService'
+// import DataService from '@/services/DataService'
 
 Vue.use(Router)
 /* eslint-disable */
@@ -21,13 +21,17 @@ export default new Router({
       beforeEnter: (to, from, next) => {
         store.commit('setLoading', false)
         if (to.params.date) {
+          store.commit('setLoading', true)
           let d = moment(to.params.date)
           store.commit('changeDay', d)
           store.commit('changeGamePk', '')
-          DataService.getData()
-            .then(() => {
-              next('dashboard')
-            })
+          this.a.app.$socket.emit('schedule', d.format('YYYYMMDD'))
+          this.a.app.$options.sockets.schedule = (data) => {
+            // console.log('got schedule', data)
+            delete this.a.app.$options.sockets.schedule
+            store.commit('setLoading', false)
+            next('dashboard')
+          }
         } else {
           next(false)
         }
@@ -37,13 +41,15 @@ export default new Router({
       name: 'setGamePk',
       path: '/setGamePk/:gamepk',
       beforeEnter: (to, from, next) => {
-        store.commit('setLoading', false)
         if (to.params.gamepk) {
+          store.commit('setLoading', true)
           store.commit('changeGamePk', to.params.gamepk)
-          DataService.getData()
-            .then(() => {
-              next('tracker')
-            })
+          this.a.app.$socket.emit('gamepk', to.params.gamepk)
+          this.a.app.$options.sockets.feed = (data) => {
+            delete this.a.app.$options.sockets.feed
+            store.commit('setLoading', false)
+            next('tracker')
+          }
         } else {
           next(false)
         }

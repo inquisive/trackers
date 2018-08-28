@@ -36,7 +36,7 @@
     methods: {},
     computed: {
       schedule () {
-        let track = this.$store.getters.schedule
+        let track = this.$store.getters.schedule || []
         track.forEach(v => {
           v.start = moment(v.startTime).format('LT')
           const h = Math.floor(v.gameMinutes / 60)

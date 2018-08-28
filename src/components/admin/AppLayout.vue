@@ -18,8 +18,8 @@
   import AppBreadcrumbs from './app-breadcrumbs/AppBreadcrumbs'
   import Layout from 'vuestic-theme/vuestic-directives/Layout'
   import {mapGetters} from 'vuex'
-  import DataService from '@/services/DataService'
-  import moment from 'moment'
+  // import DataService from '@/services/DataService'
+  // import moment from 'moment'
 
   export default {
     name: 'app-layout',
@@ -43,17 +43,13 @@
       changeGamePk (gamepk) {
         this.$store.dispatch('changeGamePk', gamepk)
       },
-      async loadDataOld () {
-        const gamepk = this.$store.getters.gamepk
-        const day = this.$store.getters.day
-        console.log('get data', gamepk, day, moment(day).format('YYYYMMDD'))
-        const response = await DataService.getData({ day: moment(day).format('YYYYMMDD'), gamepk: gamepk })
-        let res = response.data
-        console.log(res.query.day, res.query.gamepk)
-        this.$store.dispatch('setTracker', res)
-      },
       loadData () {
-        DataService.getData()
+        const day = this.$store.getters.formattedDay
+        const gamepk = this.$store.getters.gamepk
+        this.$socket.emit('schedule', day)
+        if (gamepk) {
+          this.$socket.emit('gamepk', gamepk)
+        }
       }
     },
     computed: {
@@ -68,15 +64,9 @@
     },
     updated () {},
     created () {
-      if (this.$route.query.day) {
-        // this.changeDay(this.$route.query.day)
-      }
-      if (this.$route.query.gamepk) {
-        // this.changeGamePk(this.$route.query.gamepk)
-      }
       this.loadData()
       setInterval(() => {
-        this.loadData()
+        // this.loadData()
       }, 5000)
     }
   }

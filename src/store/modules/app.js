@@ -53,7 +53,7 @@ const mutations = {
   },
   changeDay (state, day) {
     // console.log('set day', day)
-    state.track.day = moment(day).format('YYYYMMDD')
+    state.track.day = moment(day)
   },
   changeGamePk (state, gamepk) {
     // console.log('set gamepk', gamepk)
@@ -61,15 +61,36 @@ const mutations = {
   },
   setTracker (state, track) {
     // console.log('set tracker', track)
-    state.track.schedule = track.schedule
-    state.track.feed = track.feed
+    // state.track.schedule = track.schedule
+    // state.track.feed = track.feed
   },
   [types.TOGGLE_WITHOUT_ANIMATION] (state, value) {
     state.sidebar.withoutAnimation = value
   },
   setLoading (state, isLoading) {
     state.isLoading = isLoading
-  }
+  },
+  setFeed (state, feed) {
+    state.track.feed = feed
+  },
+  setSchedule (state, schedule) {
+    state.track.schedule = schedule
+  },
+  SOCKET_FEED (state, feed) {
+    // console.log('commit SOCKET_FEED feed', feed)
+    state.track.feed = feed[0]
+  },
+  SOCKET_SCHEDULE (state, schedule) {
+    // console.log('commit SOCKET_SCHEDULE', schedule)
+    state.track.schedule = schedule[0]
+  },
+  SOCKET_CONNECT (state) {
+    state.isConnected = true
+  },
+  SOCKET_DISCONNECT (state) {
+    state.isConnected = false
+  },
+
 }
 
 const actions = {
@@ -90,6 +111,14 @@ const actions = {
   },
   isToggleWithoutAnimation ({ commit }, value) {
     commit(types.TOGGLE_WITHOUT_ANIMATION, value)
+  },
+  feed ({ commit }, feed) {
+    console.log('set feed', feed)
+    commit('SOCKET_FEED', feed)
+  },
+  schedule ({ commit }, schedule) {
+    console.log('set socket_schedule', schedule)
+    commit('SOCKET_SCHEDULE', schedule)
   }
 }
 

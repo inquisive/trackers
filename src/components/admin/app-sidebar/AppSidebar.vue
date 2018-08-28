@@ -29,7 +29,7 @@
         <vuestic-date-picker
           :config="{inline: true, dateFormat: 'm/d/Y'}"
           id="date-picker-basic"
-          v-model="day"
+          :value="day"
           @on-change="setDate"
           style="display:none;font-size:18px;background:transparent;color:#FFF;border:none;font-weight:bold;"
         />
@@ -60,6 +60,11 @@ export default {
       required: true
     }
   },
+  data () {
+    return {
+      current: false
+    }
+  },
   computed: {
     day () {
       const day = this.$store.getters.day
@@ -72,7 +77,10 @@ export default {
       this[field] = ''
     },
     setDate (v, s) {
-      this.$router.push({ name: 'setDate', params: { date: moment(s, 'MM/DD/YYYY') } })
+      if (this.current !== s) {
+        this.current = s
+        this.$router.push({ name: 'setDate', params: { date: moment(s, 'MM/DD/YYYY') } })
+      }
     }
   }
 }
